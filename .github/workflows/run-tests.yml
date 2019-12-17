@@ -1,0 +1,20 @@
+name: CI Tests
+on: [push]
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v1
+        - name: Setup PHP Action
+          uses: shivammathur/setup-php@1.6.1
+          with:
+            php-version: 7.3
+            extensions: pcov
+        - name: Validate composer.json and composer.lock
+          run: composer validate
+        - name: Install dependencies
+          run: composer install --prefer-dist --no-progress --no-suggest
+        - name: CS-Check
+          run: composer cs-check
+        - name: Test
+          run: composer test-coverage
