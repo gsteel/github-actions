@@ -3,23 +3,28 @@ on: [push]
 jobs:
   run-tests:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: false
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: test
+        ports:
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ['7.3', '7.4']
     steps:
       - uses: actions/checkout@v1
       - name: Setup PHP Action
         uses: shivammathur/setup-php@1.6.1
         with:
-          php-version: 7.3
-          extensions: pcov,pdo_mysql
-      - name: Shutdown Ubuntu MySQL
-        run: sudo service mysql stop # Shutdown the Default MySQL
-      - name: Set up MySQL
-        uses: mirromutth/mysql-action@v1.1
-        with:
-          host port: 3306
-          container port: 3306
-          mysql version: '5.7'
-          mysql database: 'test'
-          mysql root password: 'password'
+          php-version: ${{ matrix.php-versions }}
+          extensions: pdo_mysql
+          coverage: pcov
       - name: Validate composer.json and composer.lock
         run: composer validate
       - name: Install dependencies

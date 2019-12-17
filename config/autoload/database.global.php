@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 return [
     'database' => [
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'database' => 'test',
         'username' => 'root',
         'password' => 'password',
