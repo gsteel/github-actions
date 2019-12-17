@@ -9,7 +9,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
-          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_ROOT_PASSWORD: 'password'
           MYSQL_DATABASE: test
           MYSQL_ROOT_HOST: '%'
         ports:
