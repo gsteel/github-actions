@@ -9,7 +9,17 @@ jobs:
         uses: shivammathur/setup-php@1.6.1
         with:
           php-version: 7.3
-          extensions: pcov
+          extensions: pcov,pdo_mysql
+      - name: Shutdown Ubuntu MySQL
+        run: sudo service mysql stop # Shutdown the Default MySQL
+      - name: Set up MySQL
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          host port: 3306
+          container port: 3306
+          mysql version: '5.7'
+          mysql database: 'test'
+          mysql root password: 'password'
       - name: Validate composer.json and composer.lock
         run: composer validate
       - name: Install dependencies

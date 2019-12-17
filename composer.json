@@ -20,7 +20,9 @@
         }
     },
     "require" : {
-        "php":"^7.3"
+        "php":"^7.3",
+        "ext-pdo": "*",
+        "zendframework/zend-config-aggregator": "^1.1"
     },
     "require-dev": {
         "ext-pcov":"*",
