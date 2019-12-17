@@ -2,13 +2,14 @@ name: CI Tests
 on: [push]
 jobs:
   run-tests:
+    name: PHP ${{ matrix.php-versions }}
     runs-on: ubuntu-latest
     services:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: false
-          MYSQL_ROOT_PASSWORD: password
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_ROOT_PASSWORD: ''
           MYSQL_DATABASE: test
         ports:
           - 3306
@@ -23,7 +24,7 @@ jobs:
         uses: shivammathur/setup-php@1.6.1
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: pdo_mysql
+          extensions: pdo_mysql,mbstring
           coverage: pcov
       - name: Validate composer.json and composer.lock
         run: composer validate
