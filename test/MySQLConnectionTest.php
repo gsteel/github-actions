@@ -9,7 +9,7 @@ use function printf;
 use function sprintf;
 use const PHP_EOL;
 
-class ConnectionTest extends TestCase
+class MySQLConnectionTest extends TestCase
 {
     /** @var mixed[] */
     private $config;

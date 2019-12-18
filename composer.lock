@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9e16ce498d02d5c6a166652d8fd0f2d4",
+    "content-hash": "13011abf0f879c274f12456b7c4bea99",
     "packages": [
         {
             "name": "zendframework/zend-config-aggregator",
@@ -1899,7 +1899,8 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^7.3",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-redis": "*"
     },
     "platform-dev": {
         "ext-pcov": "*"
