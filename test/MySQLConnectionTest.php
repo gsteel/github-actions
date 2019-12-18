@@ -5,9 +5,7 @@ namespace App\Test;
 
 use PDO;
 use PHPUnit\Framework\TestCase;
-use function printf;
 use function sprintf;
-use const PHP_EOL;
 
 class MySQLConnectionTest extends TestCase
 {
@@ -37,7 +35,6 @@ class MySQLConnectionTest extends TestCase
     {
         $config = $this->mysqlConfig();
         $dsn = sprintf('mysql:dbname=%s;host=%s;port=%d', $config['database'], $config['host'], $config['port']);
-        printf('Configured MySQL DSN is: %s' . PHP_EOL, $dsn);
         $pdo = new PDO($dsn, $config['username'], $config['password']);
         $statement = $pdo->query('SHOW TABLES');
         $data = $statement->fetchAll(PDO::FETCH_NUM);
