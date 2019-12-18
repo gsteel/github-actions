@@ -17,12 +17,16 @@ jobs:
       matrix:
         php-versions: ['7.3']
     steps:
-      - name: See if there's an already running MySQL
+      - name: Shut down Host Supplied MySQL
         run: sudo service mysql stop
       - name: Verify MySQL connection from host
         run: |
           sudo apt-get install -y mysql-client
           mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppassword -e "SHOW DATABASES"
+      - name: Export MySQL Port
+        run: |
+          export MYSQL_PORT=${{ job.services.mysql.ports }}
+          echo $MYSQL_PORT
       - uses: actions/checkout@v1
       - name: Setup PHP Action
         uses: shivammathur/setup-php@1.6.1

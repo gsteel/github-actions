@@ -7,6 +7,6 @@ return [
         'database' => 'test',
         'username' => 'root',
         'password' => 'password',
-        'port' => 3306,
+        'port' => getenv('MYSQL_PORT') || 3306,
     ],
 ];
