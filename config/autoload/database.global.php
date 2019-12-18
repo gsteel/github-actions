@@ -9,4 +9,8 @@ return [
         'password' => 'password',
         'port' => getenv('MYSQL_PORT') ?: 3306,
     ],
+    'redis' => [
+        'host' => '127.0.0.1',
+        'port' => getenv('REDIS_PORT') ?: 6379,
+    ],
 ];
