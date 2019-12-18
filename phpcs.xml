@@ -17,6 +17,8 @@
     <rule ref="Doctrine">
         <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.IncorrectWhitespaceBetweenOpenTagAndDeclare"/>
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSame" />
+        <!-- We're not running 7.4 Exclusively -->
+        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint" />
 
         <!-- I like return types to look like this: ") :? Type" or ") : Type" -->
         <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing.WhitespaceAfterNullabilitySymbol" />
