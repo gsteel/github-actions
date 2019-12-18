@@ -1,5 +1,5 @@
 name: CI Tests
-on: [push]
+on: [push, pull_request]
 jobs:
   run-tests:
     name: PHP ${{ matrix.php-versions }}
@@ -58,3 +58,5 @@ jobs:
         env:
           MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
+      - name: Upload Coverage to CodeCov
+        run: bash <(curl -s https://codecov.io/bash)
