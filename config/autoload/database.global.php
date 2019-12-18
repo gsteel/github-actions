@@ -7,6 +7,6 @@ return [
         'database' => 'test',
         'username' => 'fred',
         'password' => 'bloggs',
-        'port' => 13306,
+        'port' => 3306,
     ],
 ];
