@@ -23,6 +23,8 @@ jobs:
         php-versions: ['7.3', '7.4']
     steps:
       - uses: actions/checkout@v1
+      - name: Check MySQL Version
+        run: mysqladmin version --user=fred --password=bloggs
       - name: Setup PHP Action
         uses: shivammathur/setup-php@1.6.1
         with:
