@@ -12,8 +12,8 @@ jobs:
           MYSQL_ROOT_PASSWORD: 'password'
           MYSQL_DATABASE: test
           MYSQL_ROOT_HOST: '%'
-          MYSQL_USER: 'fred',
-          MYSQL_PASSWORD: 'bloggs',
+          MYSQL_USER: 'fred'
+          MYSQL_PASSWORD: 'bloggs'
         ports:
           - 13306:13306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
