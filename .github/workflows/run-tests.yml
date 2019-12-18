@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Check MySQL Version
-        run: mysqladmin version --user=fred --password=bloggs
+        run: mysqladmin version --user=fred --password=bloggs --host=127.0.0.1 --port=13306
       - name: Setup PHP Action
         uses: shivammathur/setup-php@1.6.1
         with:
