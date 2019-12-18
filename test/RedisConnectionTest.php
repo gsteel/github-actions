@@ -33,7 +33,7 @@ class RedisConnectionTest extends TestCase
     {
         $config = $this->redisConfig();
         $client = new Redis();
-        $client->connect($config['host'], $config['port']);
+        $client->connect($config['host'], (int) $config['port']);
         $client->select((int) $config['database']);
         if (! empty($config['password'])) {
             $client->auth($config['password']);
