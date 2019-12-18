@@ -17,6 +17,8 @@ jobs:
       matrix:
         php-versions: ['7.3']
     steps:
+      - name: See if there's an already running MySQL
+        run: sudo service mysql stop
       - name: Verify MySQL connection from host
         run: |
           sudo apt-get install -y mysql-client
