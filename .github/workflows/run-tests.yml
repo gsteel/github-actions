@@ -8,23 +8,20 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
-          MYSQL_ROOT_PASSWORD: 'password'
-          MYSQL_DATABASE: test
-          MYSQL_ROOT_HOST: '%'
-          MYSQL_USER: 'fred'
-          MYSQL_PASSWORD: 'bloggs'
+          MYSQL_ROOT_PASSWORD: password
         ports:
-          - 3306:3306
+          - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     strategy:
       fail-fast: false
       matrix:
         php-versions: ['7.3']
     steps:
+      - name: Verify MySQL connection from host
+        run: |
+          sudo apt-get install -y mysql-client
+          mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppassword -e "SHOW DATABASES"
       - uses: actions/checkout@v1
-      - name: Check MySQL Version
-        run: mysqladmin version --user=fred --password=bloggs
       - name: Setup PHP Action
         uses: shivammathur/setup-php@1.6.1
         with:

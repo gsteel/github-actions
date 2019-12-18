@@ -5,8 +5,8 @@ return [
     'database' => [
         'host' => '127.0.0.1',
         'database' => 'test',
-        'username' => 'fred',
-        'password' => 'bloggs',
+        'username' => 'root',
+        'password' => 'password',
         'port' => 3306,
     ],
 ];
