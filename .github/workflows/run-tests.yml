@@ -25,7 +25,7 @@ jobs:
           mysql --host 127.0.0.1 --port ${{ job.services.mysql.ports['3306'] }} -uroot -ppassword -e "SHOW DATABASES"
       - name: Export MySQL Port
         run: |
-          export MYSQL_PORT=${{ job.services.mysql.ports }}
+          export MYSQL_PORT=${{ job.services.mysql.ports['3306'] }}
           echo $MYSQL_PORT
       - uses: actions/checkout@v1
       - name: Setup PHP Action
