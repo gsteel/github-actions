@@ -17,4 +17,9 @@ class Something
     {
         return $this->something;
     }
+
+    public function somethingElse() : int
+    {
+        return $this->something * 10;
+    }
 }
