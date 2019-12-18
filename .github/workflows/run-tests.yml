@@ -53,10 +53,14 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
       - name: CS-Check
         run: composer cs-check
-      - name: Test
-        run: composer test-coverage
+      - name: PHPUnit
+        run: php -dpcov.enabled=1 ./vendor/bin/phpunit --coverage-clover=coverage.xml
         env:
           MYSQL_PORT: ${{ job.services.mysql.ports['3306'] }}
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
       - name: Upload Coverage to CodeCov
-        run: bash <(curl -s https://codecov.io/bash)
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          fail_ci_if_error: true
